@@ -1,0 +1,210 @@
+// out: style.css
+@import 'common.less';
+
+// 顶部导航
+.head-nav {
+  height: 64px;
+  border-bottom: 1px solid #eee;
+  .container {
+    padding: 0 20px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // logo
+    .logo-box {
+      height: 32px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
+      text-decoration: none;
+    }
+    .logo-image {
+      height: 100%;
+      display: block;
+    }
+    .slogon {
+      padding-left: 5px;
+      font-weight: 700;
+      font-size: 18px;
+      color: #999;
+    }
+
+    // 用户登录信息
+    .right-info {
+      height: 100%;
+      // width: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+      text-align: right;
+    }
+    .login-user {
+      padding: 0 20px;
+      position: relative;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      height: 40px;
+      cursor: pointer;
+      &:hover {
+        .sub-list {
+          display: block;
+        }
+      }
+      .avatar {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        background: #EEE;
+        text-align: center;
+        line-height: 40px;
+        font-size: 22px;
+      }
+    }
+    .sub-list {
+      position: absolute;
+      left: 50%;
+      top: 120%;
+      padding: 10px 15px;
+      width: 260px;
+      height: 200px;
+      background: #fff;
+      text-align: left;
+      transform: translate(-50%, 0);
+      border: 1px solid #eee;
+      display: none;
+      &::after,
+      &::before {
+        content: '';
+        display: block;
+        height: 0;
+        width: 0;
+        border: 10px solid transparent;
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translate(-50%, -100%);
+        border-bottom-color: #eee;
+      }
+      &::after {
+        margin-top: 1px;
+        border-bottom-color: #FFF;
+      }
+      .link-logout {
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        text-decoration: none;
+      }
+      .contents {
+        display: block;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}
+
+// 页面主体内容
+.container {
+  &.home,
+  &.login,
+  &.reg {
+    padding: 20px;
+  }
+}
+
+
+// 登录注册
+.login-reg-panel {
+  margin-top: 30px;
+  display: flex;
+  height: 320px;
+  .thumb-box {
+    width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid rgba(216, 231, 247, 0.4);
+    img {
+      display: block;
+      height: 300px;
+    }
+  }
+  .input-card {
+    width: 340px;
+    .contents {
+      width: 220px;
+      margin: 0 auto;
+      .title {
+        height: 60px;
+        font-size: 18px;
+        line-height: 60px;
+      }
+    }
+    .login-status {
+      height: 30px;
+      line-height: 30px;
+      font-size: 12px;
+    }
+    &.reg {
+      .input-text {
+        margin-bottom: 12px;
+      }
+    }
+    .input-text {
+      padding: 0 10px;
+      display: block;
+      width: 100%;
+      outline: none;
+      height: 42px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+      font-size: 16px;
+      font-weight: 900;
+      border: 1px solid #D8E7F7;
+      transition: all 0.2s;
+      &:focus {
+        border-color: #659FEB;
+      }
+      &::placeholder {
+        font-weight: 100;
+        color: #D8E7F7;
+      }
+    }
+
+    .custom-button {
+      padding: 0 15px;
+      display: block;
+      width: 100%;
+      height: 42px;
+      background: #eee;
+      outline: none;
+      cursor: pointer;
+      box-sizing: border-box;
+      font-size: 14px;
+      border: none;
+      border: 1px solid #A8C5EB;
+      background: #EFF6FE;
+      transition: all .4s;
+      font-size: 16px;
+      letter-spacing: 10px;
+      color: #65A0EB;
+      &:hover {
+        background: #65A0EB;
+        color: #FFF;
+      }
+    }
+
+    .links-line {
+      height: 80px;
+      line-height: 80px;
+      a {
+        padding-right: 20px;
+        font-size: 14px;
+      }
+    }
+  }
+}

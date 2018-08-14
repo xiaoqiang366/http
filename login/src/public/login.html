@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>登录</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <nav class="head-nav">
+    <div class="container">
+      <a href="/" class="logo-box">
+        <img class="logo-image" src="/image/web-design.png" alt="learn">
+        <span class="slogon">在路上</span>
+      </a>
+      <div class="right-info"></div>
+    </div>
+  </nav>
+
+  <div class="main">
+    <div class="container login">
+      <div class="login-reg-panel">
+        <div class="thumb-box">
+          <img src="./image/code_language.gif" alt="code">
+        </div>
+        <div class="input-card">
+          <div class="contents">
+            <h3 class="title">用户登录</h3>
+            <input class="input-text" type="text" id="name" name="name" value="" placeholder="请输入用户名" />
+            <input class="input-text" type="password" id="password" name="password" value="" placeholder="请输入密码" />
+            <p class="login-status" id="loginStatus"></p>
+            <button class="custom-button" id="login">登录</button>
+            <p class="links-line">
+              <a href="/reg.html">立即注册</a>
+              <a href="/">首页</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var elStatus = document.getElementById('loginStatus');
+    var btnLogin = document.getElementById('login');
+    // 登录
+    if (btnLogin) {
+      btnLogin.addEventListener('click', function (event) {
+        event.preventDefault();
+        elStatus.innerText = '';
+        elStatus.style = '';
+
+        var name = document.getElementById('name').value;
+        var password = document.getElementById('password').value;
+        if (!name || !password) {
+          elStatus.innerText = '请输入用户名或密码';
+          elStatus.style.color = '#F00';
+          return;
+        }
+        fetch('/login', {
+          method: 'POST',
+          credentials: 'same-origin',
+          body: JSON.stringify({
+            name: name,
+            password: password
+          }),
+          headers: {
+            'content-type': 'application/json'
+          },
+        }).then(function (res) {
+          return res.json();
+        }).catch(function (error) {
+          console.error('Error:', error);
+        }).then(function (data) {
+          if (+data.code === 1) {
+            window.location.href = '/';
+          } else {
+            elStatus.innerText = data.msg;
+            elStatus.style.color = '#F00';
+          }
+        });
+      })
+    }
+  </script>
+</body>
+
+</html>

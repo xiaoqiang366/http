@@ -2,43 +2,47 @@
 <html>
 
 <head>
-  <title>会话管理</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>首页</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/script.js"></script>
 </head>
 
 <body>
-  <h1>会话管理</h1>
-  <% if(isLogined){ %>
-    <p>当前登录用户：
-      <%= name %>，
-        <a href="/logout" id="logout">退出登陆</a>
-    </p>
-    <% }else{ %>
-      <form method="POST" action="/login">
-        <input type="text" id="name" name="name" value="" /><br/>
-        <input type="password" id="password" name="password" value="" /><br/>
-        <input type="submit" value="登录" id="login" />
-      </form>
-      <% } %>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script type="text/javascript">
-          $('#login').click(function (evt) {
-            evt.preventDefault();
-            $.ajax({
-              url: '/login',
-              type: 'POST',
-              data: {
-                name: $('#name').val(),
-                password: $('#password').val()
-              },
-              success: function (data) {
-                if (data.ret_code === 0) {
-                  location.reload();
-                }
-              }
-            });
-          });
-        </script>
+  <nav class="head-nav">
+    <div class="container">
+      <a href="/" class="logo-box">
+        <img class="logo-image" src="/image/web-design.png" alt="learn">
+        <span class="slogon">在路上</span>
+      </a>
+      <div class="right-info">
+        <% if(isLogined){ %>
+          <div class="login-user">
+            <div class="avatar"><%= name[0] %></div>
+            <div class="sub-list">
+              <a href="#" class="link-logout" id="logout">退出</a>
+              <div class="contents">
+                用户名: <%= name %>
+              </div>
+            </div>
+          </div>
+          <% }else{ %>
+            <div>
+              <a href="login.html">登录</a> /
+              <a href="reg.html">注册</a>
+            </div>
+            <% } %>
+      </div>
+    </div>
+  </nav>
 
+  <div class="main">
+    <div class="container home">
+      首页内容
+    </div>
+  </div>
 </body>
 
 </html>
